@@ -12,10 +12,7 @@ const images = {
     "af98392a-8a0d-4d09-879c-e883be2163ed",
     "2025+crowd+size.jpg?format=2500w",
   ),
-  about: asset(
-    "33c91cc4-ecd8-490c-96ac-f7bc764d9534",
-    "TYS_Website_AdditionalGraphics-08.jpg?format=1500w",
-  ),
+  about: "./assets/txys-about.png",
   final: asset(
     "57e006c8-ae49-42ba-87ec-d9709e4811b2",
     "TYS_Website_AdditionalGraphics-12.jpg?format=2500w",
@@ -324,7 +321,7 @@ app.innerHTML = `
       <div class="frame about-grid">
         <div class="about-heading"><p class="eyebrow red"><span></span> About the summit</p><h2>IT'S HARD TO STAND FOR YOUR VALUES WHEN YOU FEEL LIKE YOU'RE STANDING ALONE</h2></div>
         <div class="about-copy"><p>The loudest voices online, in entertainment, and throughout culture often seem to push in the same direction.</p><p>That can leave students, parents, and families wondering whether anyone else sees the world the way they do.</p><p>Texas Youth Summit brings people together for two days of real conversations, trusted leaders, practical training, worship, and community.</p><p>Instead of watching the conversation from the sidelines, attendees become part of it.</p><ul class="benefit-list"><li><b>LISTEN</b>Hear directly from nationally recognized conservative leaders</li><li><b>LEARN</b>Explore faith, freedom, leadership, and the principles behind American exceptionalism</li><li><b>CONNECT</b>Meet students, families, educators, pastors, and community leaders who share your values</li><li><b>LEAD</b>Leave with practical ideas for making a difference in your school, church, workplace, or community</li></ul></div>
-        <figure class="about-image"><img src="${images.about}" alt="Texas Youth Summit attendees gathered on stage" loading="lazy" /><figcaption>The Woodlands Waterway Marriott Hotel & Convention Center</figcaption></figure>
+        <figure class="about-image"><img src="${images.about}" alt="Texas Youth Summit event audience and stage" loading="lazy" /></figure>
       </div>
     </section>
 
@@ -385,10 +382,9 @@ app.innerHTML = `
       </div>
     </div></section>
 
-    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$25 Adult General Admission<br />$2 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
+    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><a class="final-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$25 Adult General Admission<br />$2 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
   </main>
-
-  <footer><div class="frame"><div class="footer-top"><a class="footer-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><div><h2>Don’t miss a Texas<br />Youth Summit event.</h2><form class="newsletter" data-newsletter><label class="sr-only" for="email">Email address</label><input id="email" type="email" name="email" placeholder="Email address" required /><button type="submit">Sign up <span>→</span></button></form><p class="newsletter-note">We respect your privacy. Email signup is not configured on this site yet.</p></div></div><div class="footer-bottom"><p>Texas Youth Summit is hosted by Texas Youth Foundation, a 501(c)(3) nonprofit, and co-hosted by Texas Youth Action, a 501(c)(4) nonprofit. Certain civic engagement and public policy programming is presented by Texas Youth Action.</p><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#partners">Support</a><a href="https://www.texasyouthsummit.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a></nav><p>© 2026 Texas Youth Summit</p></div></div></footer>
+  <footer><div class="frame"><div class="footer-bottom"><p>Texas Youth Summit is hosted by Texas Youth Foundation, a 501(c)(3) nonprofit, and co-hosted by Texas Youth Action, a 501(c)(4) nonprofit. Certain civic engagement and public policy programming is presented by Texas Youth Action.</p><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#partners">Support</a><a href="https://www.texasyouthsummit.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a></nav><p>© 2026 Texas Youth Summit</p></div></div></footer>
   <a class="mobile-ticket" href="${TICKET_URL}" target="_blank" rel="noreferrer">Get tickets <span>→</span></a>
 `;
 
@@ -412,14 +408,6 @@ window.addEventListener(
   () => header.classList.toggle("is-scrolled", window.scrollY > 24),
   { passive: true },
 );
-document
-  .querySelector("[data-newsletter]")
-  .addEventListener("submit", (event) => {
-    event.preventDefault();
-    document.querySelector(".newsletter-note").textContent =
-      "Email notifications are not configured on this site yet.";
-  });
-
 function initializeAnimatedCounter(counter) {
   const end = Number(counter.dataset.counterEnd);
   const suffix = counter.dataset.counterSuffix ?? "";
@@ -469,7 +457,12 @@ document
 function initializeMobileTicketVisibility() {
   const mobileTicket = document.querySelector(".mobile-ticket");
   const heroTicket = document.querySelector(".hero-actions .button");
+  const finalCta = document.querySelector(".final-cta");
+  const footer = document.querySelector("footer");
   const mobileViewport = window.matchMedia("(max-width: 620px)");
+  let heroTicketVisible = true;
+  let finalCtaVisible = false;
+  let footerVisible = false;
 
   if (!("IntersectionObserver" in window)) {
     mobileTicket.classList.add("is-visible");
@@ -477,14 +470,30 @@ function initializeMobileTicketVisibility() {
   }
 
   const observer = new IntersectionObserver(
-    ([entry]) => mobileTicket.classList.toggle("is-visible", !entry.isIntersecting),
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === heroTicket) heroTicketVisible = entry.isIntersecting;
+        if (entry.target === finalCta) finalCtaVisible = entry.isIntersecting;
+        if (entry.target === footer) footerVisible = entry.isIntersecting;
+      });
+      mobileTicket.classList.toggle(
+        "is-visible",
+        !heroTicketVisible && !finalCtaVisible && !footerVisible,
+      );
+    },
     { threshold: 0 },
   );
 
   const update = () => {
-    if (mobileViewport.matches) observer.observe(heroTicket);
+    if (mobileViewport.matches) {
+      observer.observe(heroTicket);
+      observer.observe(finalCta);
+      observer.observe(footer);
+    }
     else {
       observer.unobserve(heroTicket);
+      observer.unobserve(finalCta);
+      observer.unobserve(footer);
       mobileTicket.classList.remove("is-visible");
     }
   };
