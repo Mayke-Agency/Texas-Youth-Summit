@@ -466,6 +466,35 @@ document
   .querySelectorAll("[data-animated-counter]")
   .forEach(initializeAnimatedCounter);
 
+function initializeMobileTicketVisibility() {
+  const mobileTicket = document.querySelector(".mobile-ticket");
+  const heroTicket = document.querySelector(".hero-actions .button");
+  const mobileViewport = window.matchMedia("(max-width: 620px)");
+
+  if (!("IntersectionObserver" in window)) {
+    mobileTicket.classList.add("is-visible");
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    ([entry]) => mobileTicket.classList.toggle("is-visible", !entry.isIntersecting),
+    { threshold: 0 },
+  );
+
+  const update = () => {
+    if (mobileViewport.matches) observer.observe(heroTicket);
+    else {
+      observer.unobserve(heroTicket);
+      mobileTicket.classList.remove("is-visible");
+    }
+  };
+
+  mobileViewport.addEventListener("change", update);
+  update();
+}
+
+initializeMobileTicketVisibility();
+
 function initializeBenefitReveals() {
   const benefits = document.querySelectorAll(".benefit-list li");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
