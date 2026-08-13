@@ -168,6 +168,24 @@ const speakers = [
     "Steve+Toth.jpg",
   ],
   [
+    "Paul Bettencourt",
+    "Texas State Sen., SD-7",
+    null,
+    "./assets/paul-bettencourt.png",
+  ],
+  [
+    "Brett Ligon",
+    "Texas State Sen., SD-4",
+    null,
+    "./assets/brett-ligon.png",
+  ],
+  [
+    "Bryan Hughes",
+    "Texas State Sen., SD-1",
+    null,
+    "./assets/bryan-hughes.png",
+  ],
+  [
     "Dr. Jincy Collins, PT, DPT",
     "Physical Therapist | MAHA Health & Wellness",
     "11c44102-1240-4ca1-922c-2aff1c346568",
@@ -194,7 +212,7 @@ const speakers = [
 ].map(([name, title, id, file]) => ({
   name,
   title,
-  image: asset(id, `${file}?format=1000w`),
+  image: id ? asset(id, `${file}?format=1000w`) : file,
 }));
 
 const schedule = {
