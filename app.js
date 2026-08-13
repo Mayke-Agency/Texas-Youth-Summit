@@ -197,9 +197,6 @@ const speakers = [
   image: asset(id, `${file}?format=1000w`),
 }));
 
-const featuredSpeakers = [speakers[1], speakers[3], speakers[2], speakers[4]];
-const remainingSpeakers = speakers.filter((speaker) => !featuredSpeakers.includes(speaker));
-
 const schedule = {
   friday: [
     ["1:00 PM", "VIP Registration Opens"],
@@ -227,7 +224,7 @@ const ticketTiers = [
   {
     name: "Youth & Young Adult General Admission",
     label: "",
-    price: "$2",
+    price: "$1",
     note: "Use promo code LONESTARYOUTH",
     button: "GET YOUTH GA TICKETS",
     className: "ticket-youth",
@@ -304,7 +301,7 @@ app.innerHTML = `
           <div class="event-place"><strong>OCTOBER 9-10, 2026</strong><span>THE WOODLANDS WATERWAY MARRIOTT</span></div>
           <div class="hero-actions">${ticketLink("GET TICKETS BEFORE PRICES INCREASE")}<a class="text-link" href="#about">Explore the Summit <span>↓</span></a></div>
         </div>
-        <div class="hero-urgency"><span>Buy early and save. Ticket prices increase as the Summit approaches</span><i>$25 Adult General Admission · $2 Youth & Young Adult General Admission with code LONESTARYOUTH</i></div>
+        <div class="hero-urgency"><span>Buy early and save. Ticket prices increase as the Summit approaches</span><i>$25 Adult General Admission · $1 Youth & Young Adult General Admission with code LONESTARYOUTH</i></div>
       </div>
       <div class="hero-index" aria-hidden="true">TXYS <b>26</b></div>
     </section>
@@ -313,7 +310,7 @@ app.innerHTML = `
       <div class="frame credibility-grid">
         <div class="attendance"><span data-animated-counter data-counter-end="3500" data-counter-suffix="+">0+</span><p>ATTENDED IN 2025</p></div>
         <div class="largest"><p><strong>20+ 2026 SPEAKERS</strong><br />2 DAYS OF SPEAKERS, TRAINING, AND COMMUNITY</p></div>
-        <div class="as-seen"><p>TICKETS FROM $2<br /><strong>BUY EARLY AND SAVE</strong></p></div>
+        <div class="as-seen"><p>TICKETS FROM $1<br /><strong>BUY EARLY AND SAVE</strong></p></div>
       </div>
     </section>
 
@@ -330,12 +327,8 @@ app.innerHTML = `
     <section class="speakers section" id="speakers">
       <div class="frame">
         <div class="section-heading split-heading"><div><p class="eyebrow"><span></span> On the TXYS stage</p><h2>MEET THE CONSERVATIVE LEADERS TAKING THE STAGE IN 2026</h2></div><p>Hear directly from national leaders in government, sports, journalism, culture, and public life</p></div>
-        <p class="mini-label">Featured</p>
-        <div class="featured-speakers">${featuredSpeakers
+        <div class="speaker-grid speaker-lineup" id="speaker-lineup">${speakers
           .map((speaker) => speakerCard(speaker, true))
-          .join("")}</div>
-        <div class="speaker-grid" id="speaker-lineup">${remainingSpeakers
-          .map((speaker) => speakerCard(speaker))
           .join("")}</div>
       </div>
     </section>
@@ -343,7 +336,7 @@ app.innerHTML = `
     <section class="music-feature" style="--music-image: url('./assets/mcw.jpg')"><div class="music-row"><span class="star">★</span><p><b>Music by</b> Mercy Culture Worship</p><span class="star">★</span></div></section>
 
     <section class="ticket-banner" style="--banner-image: url('${images.final}')">
-      <div class="frame"><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>STRENGTHEN YOUR VALUES<br /><em>FIND YOUR COMMUNITY</em><br />LEAD WITH CONFIDENCE</h2><div class="banner-bottom"><p><b>$2 Youth & Young Adult General Admission</b><br />Use code LONESTARYOUTH</p>${ticketLink("GET TICKETS BEFORE PRICES INCREASE")}</div></div>
+      <div class="frame"><p class="eyebrow"><span></span> What we stand for</p><h2>ROOTED IN THE PRINCIPLES THAT SHAPED AMERICA</h2><p class="ticket-banner-copy">Texas Youth Summit is built around faith, freedom, personal responsibility, American exceptionalism, and Judeo-Christian principles that shaped our nation.</p></div>
     </section>
 
     <section class="schedule section" id="schedule">
@@ -374,7 +367,7 @@ app.innerHTML = `
     <section class="faq section" id="info"><div class="frame"><div class="section-heading split-heading"><div><p class="eyebrow red"><span></span> Know before you go</p><h2>FREQUENTLY ASKED QUESTIONS</h2></div></div>
       <div class="faq-list">
         ${faqItem("Who can attend?", "<p>Texas Youth Summit is open to people of all ages, including students, young adults, parents, educators, pastors, and community leaders. Attendees under 16 must attend with an adult</p>")}
-        ${faqItem("Is youth admission really $2?", "<p>Yes. Youth & Young Adult General Admission is $2 when promo code LONESTARYOUTH is applied during registration</p>")}
+        ${faqItem("Is youth admission really $1?", "<p>Yes. Youth & Young Adult General Admission is $1 when promo code LONESTARYOUTH is applied during registration</p>")}
         ${faqItem("Will tickets be available at the door?", "<p>On-site registration may not be available if tickets sell out. Purchase before traveling to the venue</p>")}
         ${faqItem("Are meals included?", "<p>Saturday lunch concessions will be available for purchase through the hotel. The exclusive breakfast with Tulsi Gabbard requires a separate ticket</p>")}
         ${faqItem("What is the refund policy?", "<p>No refunds will be issued after October 2, 2026. Approved refunds are processed within seven days</p>")}
@@ -382,7 +375,7 @@ app.innerHTML = `
       </div>
     </div></section>
 
-    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><a class="final-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$25 Adult General Admission<br />$2 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
+    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><a class="final-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$25 Adult General Admission<br />$1 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
   </main>
   <footer><div class="frame"><div class="footer-bottom"><p>Texas Youth Summit is hosted by Texas Youth Foundation, a 501(c)(3) nonprofit, and co-hosted by Texas Youth Action, a 501(c)(4) nonprofit. Certain civic engagement and public policy programming is presented by Texas Youth Action.</p><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#partners">Support</a><a href="https://www.texasyouthsummit.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a></nav><p>© 2026 Texas Youth Summit</p></div></div></footer>
   <a class="mobile-ticket" href="${TICKET_URL}" target="_blank" rel="noreferrer">Get tickets <span>→</span></a>
@@ -503,6 +496,37 @@ function initializeMobileTicketVisibility() {
 }
 
 initializeMobileTicketVisibility();
+
+function initializeMobileMusicParallax() {
+  const musicFeature = document.querySelector(".music-feature");
+  const mobileViewport = window.matchMedia("(max-width: 620px)");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    if (!mobileViewport.matches || reduceMotion.matches) {
+      musicFeature.style.removeProperty("--music-parallax-y");
+      return;
+    }
+    const bounds = musicFeature.getBoundingClientRect();
+    const offset = Math.max(-120, Math.min(120, -bounds.top * 0.3));
+    musicFeature.style.setProperty("--music-parallax-y", `${offset}px`);
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  mobileViewport.addEventListener("change", requestUpdate);
+  requestUpdate();
+}
+
+initializeMobileMusicParallax();
 
 function initializeBenefitReveals() {
   const benefits = document.querySelectorAll(".benefit-list li");

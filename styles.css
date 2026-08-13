@@ -574,8 +574,8 @@ h1 em {
   font-family: "Barlow Condensed";
   font-size: clamp(65px, 10vw, 155px);
   font-weight: 900;
-  line-height: 0.7;
-  letter-spacing: -0.06em;
+  line-height: 0.82;
+  letter-spacing: -0.015em;
   opacity: 0.94;
 }
 .about-image img {
@@ -734,6 +734,9 @@ h1 em {
   color: #bbc7d4;
   min-height: 30px;
 }
+.speaker-lineup {
+  margin-top: 0;
+}
 .music-feature {
   position: relative;
   z-index: 0;
@@ -814,6 +817,13 @@ h1 em {
 }
 .ticket-banner h2 em {
   color: white;
+}
+.ticket-banner-copy {
+  max-width: 670px;
+  margin: 32px 0 0;
+  color: #d5dde6;
+  font-size: 18px;
+  line-height: 1.6;
 }
 .banner-bottom {
   margin-top: 85px;
@@ -1591,7 +1601,8 @@ footer {
     white-space: pre;
     font-size: 68px;
     bottom: 5px;
-    line-height: 0.68;
+    line-height: 0.78;
+    letter-spacing: -0.01em;
   }
   .about-image figcaption {
     font-size: 8px;
@@ -1653,7 +1664,8 @@ footer {
     min-height: 480px;
   }
   .music-feature::before {
-    background-attachment: fixed;
+    background-attachment: scroll;
+    background-position: center calc(50% + var(--music-parallax-y, 0px));
   }
   .music-row {
     margin: 0 auto;
@@ -1918,6 +1930,127 @@ footer {
     grid-row: auto;
   }
   .featured-speakers .speaker {
+    aspect-ratio: 1 / 1.22;
+  }
+}
+/* Unified speaker card sizing and image-overlay treatment. */
+@media (min-width: 621px) {
+  .featured-speakers,
+  .speaker-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+  .featured-speakers .speaker,
+  .speaker-grid .speaker {
+    aspect-ratio: 1 / 1.13;
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .featured-speakers .speaker:nth-child(1),
+  .featured-speakers .speaker:nth-child(2),
+  .featured-speakers .speaker:nth-child(3),
+  .featured-speakers .speaker:nth-child(4) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .featured-speakers .speaker-image,
+  .speaker-grid .speaker-image {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .speaker-grid .speaker-copy {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    color: white;
+  }
+  .speaker-grid .speaker-copy h3 {
+    font-size: 28px;
+  }
+  .speaker-grid .speaker-copy p {
+    min-height: 0;
+    color: white;
+    font-size: 10px;
+  }
+}
+@media (min-width: 621px) and (max-width: 900px) {
+  .featured-speakers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .speaker-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .speaker-featured .speaker-copy,
+  .speaker-grid .speaker-copy {
+    padding: 11px;
+  }
+  .speaker-featured .speaker-copy h3,
+  .speaker-grid .speaker-copy h3 {
+    font-size: clamp(22px, 3.1vw, 29px);
+    line-height: 0.88;
+  }
+  .speaker-featured .speaker-copy p,
+  .speaker-grid .speaker-copy p {
+    margin-top: 4px;
+    font-size: 9px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 620px) {
+  .featured-speakers .speaker,
+  .speaker-grid .speaker {
+    aspect-ratio: 1 / 1.22;
+  }
+  .speaker-grid .speaker-image {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+}
+/* One continuous speaker lineup. */
+.speaker-lineup .speaker-copy {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+  color: white;
+}
+.speaker-lineup .speaker-copy h3 {
+  font-size: 28px;
+}
+.speaker-lineup .speaker-copy p {
+  min-height: 0;
+  color: white;
+  font-size: 10px;
+}
+@media (max-width: 900px) {
+  .speaker-lineup {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .speaker-lineup .speaker-copy {
+    padding: 11px;
+  }
+  .speaker-lineup .speaker-copy h3 {
+    font-size: clamp(22px, 3.1vw, 29px);
+    line-height: 0.88;
+  }
+  .speaker-lineup .speaker-copy p {
+    margin-top: 4px;
+    font-size: 9px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 620px) {
+  .speaker-lineup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+    row-gap: 9px;
+  }
+  .speaker-lineup .speaker,
+  .speaker-lineup .speaker-image {
+    height: auto;
     aspect-ratio: 1 / 1.22;
   }
 }
