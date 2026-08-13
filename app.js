@@ -296,7 +296,7 @@ app.innerHTML = `
       <div class="hero-inner frame">
         <p class="eyebrow"><span></span> JOIN US FOR THE 2026 TEXAS YOUTH SUMMIT</p>
         <h1>STRENGTHEN YOUR VALUES<br /><em>FIND YOUR COMMUNITY</em><br />LEAD WITH CONFIDENCE</h1>
-        <p class="hero-subhead">Spend two days learning from national conservative leaders and connecting with students, families, pastors, and educators from across Texas.</p>
+        <p class="hero-subhead">Spend two days growing in your Christian faith, learning from national conservative leaders, and connecting with students, families, pastors, and educators from across Texas.</p>
         <div class="hero-bottom">
           <div class="event-place"><strong>OCTOBER 9-10, 2026</strong><span>THE WOODLANDS WATERWAY MARRIOTT</span></div>
           <div class="hero-actions">${ticketLink("GET TICKETS BEFORE PRICES INCREASE")}<a class="text-link" href="#about">Explore the Summit <span>↓</span></a></div>
