@@ -250,7 +250,7 @@ const ticketTiers = [
   {
     name: "Adult General Admission",
     label: "",
-    price: "$25",
+    price: "$35",
     note: "General admission to the 2026 Texas Youth Summit",
     button: "GET ADULT GA TICKETS",
     className: "",
@@ -258,7 +258,7 @@ const ticketTiers = [
   {
     name: "Youth & Young Adult VIP",
     label: "",
-    price: "$200",
+    price: "$250",
     note: "Includes expedited entry, priority seating, exclusive access to the VIP Reception with Riley Gaines, Nick Shirley, and Brandon Gill, plus additional VIP perks to be announced",
     button: "GET YOUTH VIP TICKETS",
     className: "",
@@ -266,7 +266,7 @@ const ticketTiers = [
   {
     name: "Adult VIP",
     label: "",
-    price: "$300",
+    price: "$350",
     note: "Includes expedited entry, priority seating, and exclusive access to the VIP Reception with Riley Gaines, Nick Shirley, and Brandon Gill",
     button: "GET ADULT VIP TICKETS",
     className: "ticket-dark",
@@ -319,7 +319,7 @@ app.innerHTML = `
           <div class="event-place"><strong>OCTOBER 9-10, 2026</strong><span>THE WOODLANDS WATERWAY MARRIOTT</span></div>
           <div class="hero-actions">${ticketLink("GET TICKETS BEFORE PRICES INCREASE")}<a class="text-link" href="#about">Explore the Summit <span>↓</span></a></div>
         </div>
-        <div class="hero-urgency"><span>Buy early and save. Ticket prices increase as the Summit approaches</span><i>$25 Adult General Admission · $1 Youth & Young Adult General Admission with code LONESTARYOUTH</i></div>
+        <div class="hero-urgency"><span>Buy early and save. Ticket prices increase as the Summit approaches</span><i>$35 Adult General Admission · $1 Youth & Young Adult General Admission with code LONESTARYOUTH</i></div>
       </div>
       <div class="hero-index" aria-hidden="true">TXYS <b>26</b></div>
     </section>
@@ -393,7 +393,7 @@ app.innerHTML = `
       </div>
     </div></section>
 
-    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><a class="final-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$25 Adult General Admission<br />$1 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
+    <section class="final-cta" style="--final-image: url('${images.hero}')"><div class="frame"><a class="final-logo" href="#top" aria-label="Texas Youth Summit home"><img src="./assets/txys-logo.svg" alt="" /></a><p class="eyebrow"><span></span> OCTOBER 9-10, 2026</p><h2>JOIN US AT THE 2026 TEXAS YOUTH SUMMIT</h2><p>Strengthen your values, find your community, and leave ready to lead with confidence</p><p>Join students, families, educators, pastors, and leaders for two days at The Woodlands Waterway Marriott</p><p>Lock in today's ticket price before prices increase</p><div class="final-info"><strong>$35 Adult General Admission<br />$1 Youth & Young Adult General Admission with code LONESTARYOUTH</strong>${ticketLink("GET TICKETS NOW")}</div></div></section>
   </main>
   <footer><div class="frame"><div class="footer-bottom"><p>Texas Youth Summit is hosted by Texas Youth Foundation, a 501(c)(3) nonprofit, and co-hosted by Texas Youth Action, a 501(c)(4) nonprofit. Certain civic engagement and public policy programming is presented by Texas Youth Action.</p><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#partners">Support</a><a href="https://www.texasyouthsummit.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a></nav><p>© 2026 Texas Youth Summit</p></div></div></footer>
   <a class="mobile-ticket" href="${TICKET_URL}" target="_blank" rel="noreferrer">Get tickets <span>→</span></a>
